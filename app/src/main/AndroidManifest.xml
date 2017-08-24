@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.akat2.myfootball">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_soccer_ball"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_soccer_ball"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".listCompetitions.listCompetitions"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".noConnection.noConnection"
+            android:label="@string/title_activity_no_connection"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".listTeams.listTeams"
+            android:label="@string/title_activity_list_teams"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".teamDetails.teamDetails"
+            android:label="@string/title_activity_team_details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fixturesList.fixturesList"
+            android:label="@string/title_activity_fixtures_list"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".SplashScreen.SplashScreen"
+            android:label="@string/title_activity_splash_screen"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

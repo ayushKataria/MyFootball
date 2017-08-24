@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MyFootball</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_no_connection">No Connection</string>
+    <string name="title_activity_list_teams">List Of Teams</string>
+    <string name="title_activity_team_details">Team Details</string>
+    <string name="title_activity_fixtures_list">Fixtures List</string>
+    <string name="title_activity_splash_screen">MyFootBall</string>
+</resources>
