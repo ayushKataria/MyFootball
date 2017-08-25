@@ -6,4 +6,5 @@
     <string name="title_activity_team_details">Team Details</string>
     <string name="title_activity_fixtures_list">Fixtures List</string>
     <string name="title_activity_splash_screen">MyFootBall</string>
+    <string name="title_activity_settings">settings</string>
 </resources>

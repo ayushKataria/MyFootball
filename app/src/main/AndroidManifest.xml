@@ -15,7 +15,7 @@
         <activity
             android:name=".listCompetitions.listCompetitions"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".noConnection.noConnection"
             android:label="@string/title_activity_no_connection"
@@ -31,9 +31,7 @@
         <activity
             android:name=".fixturesList.fixturesList"
             android:label="@string/title_activity_fixtures_list"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".SplashScreen.SplashScreen"
             android:label="@string/title_activity_splash_screen"
@@ -44,6 +42,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".settings.settings"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

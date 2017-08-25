@@ -6,10 +6,15 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import com.example.akat2.myfootball.R;
+import com.example.akat2.myfootball.SplashScreen.SplashScreen;
 
 public class settings extends AppCompatActivity {
+
+    Switch aSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +23,22 @@ public class settings extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        init();
+
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    SplashScreen.loadImages = false;
+                }else{
+                    SplashScreen.loadImages = true;
+                }
             }
         });
+    }
+
+    void init(){
+        aSwitch = (Switch) findViewById(R.id.loadImages);
     }
 
 }

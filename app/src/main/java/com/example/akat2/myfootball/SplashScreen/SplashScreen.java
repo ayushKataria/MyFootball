@@ -18,6 +18,7 @@ import com.example.akat2.myfootball.utils.utils;
 public class SplashScreen extends AppCompatActivity {
 
     Context context = this;
+    static public Boolean loadImages = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
