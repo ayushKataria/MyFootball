@@ -24,6 +24,7 @@ import com.example.akat2.myfootball.listCompetitions.listCompetitions_interface.
 import com.example.akat2.myfootball.listCompetitions.listCompetitions_model.listCompetitions_model;
 import com.example.akat2.myfootball.listCompetitions.listCompetitions_parser.listCompetitions_parser;
 import com.example.akat2.myfootball.listTeams.listTeams;
+import com.example.akat2.myfootball.settings.settings;
 
 import java.util.ArrayList;
 
@@ -71,6 +72,12 @@ public class listCompetitions extends AppCompatActivity implements listCompetiti
                                 finish();
                                 break;
                             case R.id.action_teams:
+                                break;
+                            case R.id.action_about:
+                                intent = new Intent(context, settings.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
                                 break;
                         }
                     }

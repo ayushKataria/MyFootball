@@ -2,8 +2,10 @@ package com.example.akat2.myfootball.SplashScreen;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +20,8 @@ import com.example.akat2.myfootball.utils.utils;
 public class SplashScreen extends AppCompatActivity {
 
     Context context = this;
-    static public Boolean loadImages = true;
+    static public Boolean loadImages  = true;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,8 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+                loadImages = sharedPreferences.getBoolean("loadImages", true);
                 if (utils.isNetworkAvailable(context)) {
                     Intent intent = new Intent(context, fixturesList.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

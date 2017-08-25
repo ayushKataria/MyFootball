@@ -21,6 +21,7 @@ import com.example.akat2.myfootball.fixturesList.fixturesList_interface.fixtures
 import com.example.akat2.myfootball.fixturesList.fixturesList_model.fixturesList_model;
 import com.example.akat2.myfootball.fixturesList.fixturesList_parser.fixturesList_parser;
 import com.example.akat2.myfootball.listCompetitions.listCompetitions;
+import com.example.akat2.myfootball.settings.settings;
 import com.github.badoualy.datepicker.DatePickerTimeline;
 
 import java.text.DecimalFormat;
@@ -61,6 +62,12 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
                                 break;
                             case R.id.action_teams:
                                 Intent intent = new Intent(context, listCompetitions.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
+                                break;
+                            case R.id.action_about:
+                                intent = new Intent(context, settings.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 finish();

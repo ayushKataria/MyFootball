@@ -22,6 +22,7 @@ import com.example.akat2.myfootball.fixturesList.fixturesList;
 import com.example.akat2.myfootball.listTeams.listTeams_interface.listTeam_interface;
 import com.example.akat2.myfootball.listTeams.listTeams_model.listTeams_model;
 import com.example.akat2.myfootball.listTeams.listTeams_parser.listTeams_parser;
+import com.example.akat2.myfootball.settings.settings;
 import com.example.akat2.myfootball.teamDetails.teamDetails;
 
 import java.util.ArrayList;
@@ -73,6 +74,12 @@ public class listTeams extends AppCompatActivity implements listTeam_interface {
                                 finish();
                                 break;
                             case R.id.action_teams:
+                                break;
+                            case R.id.action_about:
+                                intent = new Intent(context, settings.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
                                 break;
                         }
                     }
