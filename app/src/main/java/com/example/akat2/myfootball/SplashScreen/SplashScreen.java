@@ -42,6 +42,7 @@ public class SplashScreen extends AppCompatActivity {
                     finish();
                 } else {
                     Intent intent = new Intent(context, noConnection.class);
+                    intent.putExtra("caller",fixturesList.class.getName().toString());
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();

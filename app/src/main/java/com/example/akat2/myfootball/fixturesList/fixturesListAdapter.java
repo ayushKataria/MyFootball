@@ -74,7 +74,7 @@ public class fixturesListAdapter extends BaseAdapter {
         String s;
         if(fixturesModel.getStatus().equals("SCHEDULED")||fixturesModel.getStatus().equals("TIMED")) {
             String dateTime[] = fixturesModel.getDate().split("T");
-            s = dateTime[0] + "\n" + dateTime[1].substring(0, dateTime[1].length() - 1);
+            s = "\n" + dateTime[1].substring(0, dateTime[1].length() - 1);
             time.setText(s);
             time.setVisibility(View.VISIBLE);
             score.setVisibility(View.GONE);

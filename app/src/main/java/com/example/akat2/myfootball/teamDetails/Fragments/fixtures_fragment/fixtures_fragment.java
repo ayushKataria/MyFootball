@@ -20,6 +20,7 @@ import com.example.akat2.myfootball.teamDetails.teamDetails;
 import com.example.akat2.myfootball.teamDetails.teamDetails_interface.fixtures_interface;
 import com.example.akat2.myfootball.teamDetails.teamDetails_model.fixtures_model;
 import com.example.akat2.myfootball.teamDetails.teamDetails_parser.fixtures_parser;
+import com.example.akat2.myfootball.utils.utils;
 
 import java.util.ArrayList;
 
@@ -51,6 +52,12 @@ public class fixtures_fragment extends Fragment implements fixtures_interface {
 
     @Override
     public void fixturesRecieved(ArrayList<fixtures_model> fixturesModels) {
+
+        for(int i=0;i<fixturesModels.size();i++){
+            fixtures_model fixturesModel = fixturesModels.get(i);
+            String dateTime[] = fixturesModel.getDate().split("T");
+            fixturesModel.setDate(utils.getDateForTimeZone(dateTime[0],dateTime[1]));
+        }
 
         rv.setAdapter(new fixturesListAdapter(context, fixturesModels));
     }

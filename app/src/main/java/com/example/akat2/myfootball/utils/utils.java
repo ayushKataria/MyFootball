@@ -1,11 +1,13 @@
 package com.example.akat2.myfootball.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.design.widget.Snackbar;
 
 import com.larvalabs.svgandroid.SVG;
 import com.larvalabs.svgandroid.SVGParser;
@@ -19,6 +21,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -27,6 +37,66 @@ import java.util.concurrent.TimeUnit;
 
 public class utils {
 
+
+    public static String getDateForTimeZone(String date, String time){
+        String[] d = date.split("-");
+        String[] t = time.split(":");
+        int year = Integer.parseInt(d[0]);
+        int month = Integer.parseInt(d[1]);
+        int day = Integer.parseInt(d[2]);
+        int hour = Integer.parseInt(t[0]);
+        int minutes = Integer.parseInt(t[1]);
+
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"), Locale.getDefault());
+        Date currentLocalTime = calendar.getTime();
+        DateFormat format = new SimpleDateFormat("z", Locale.getDefault());
+        String localTime = format.format(currentLocalTime);
+
+        String timeZone = localTime.substring(4);
+        if(localTime.charAt(3) == '+'){
+            String timeZoneSplit[] = timeZone.split(":");
+            int hourTimeZone = Integer.parseInt(timeZoneSplit[0]);
+            int minTimeZone = Integer.parseInt(timeZoneSplit[1]);
+            minutes += minTimeZone;
+            if(minutes>=60){
+                hour++;
+                minutes -= 60;
+            }
+            hour += hourTimeZone;
+            if(hour>=24){
+                hour -= 24;
+                day++;
+            }
+            if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+                if (day > 31) {
+                    day -= 31;
+                    month++;
+                }
+            }else if (month == 2) {
+                    if (day > 28) {
+                        day -= 28;
+                        month++;
+                    }
+            } else {
+                if(day > 30) {
+                    day -= 30;
+                    month++;
+                }
+            }
+            if (month > 12){
+                month -= 12;
+                year++;
+            }
+        }
+        DecimalFormat dformat = new DecimalFormat("00");
+        String twodigitMonth = dformat.format(month);
+        String twoDigitDay = dformat.format(day);
+        String twoDigitHour = dformat.format(hour);
+        String twoDigitminutes = dformat.format(minutes);
+        String dateFinal = year + "-"  + twodigitMonth + "-" + twoDigitDay;
+        String timeFinal = twoDigitHour + ":" + twoDigitminutes + ":";
+        return dateFinal+"T"+timeFinal+t[2];
+    }
 
     public static String getCompetitionName(int id){
         switch (id){

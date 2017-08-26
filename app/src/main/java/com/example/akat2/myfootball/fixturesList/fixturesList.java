@@ -22,6 +22,7 @@ import com.example.akat2.myfootball.fixturesList.fixturesList_model.fixturesList
 import com.example.akat2.myfootball.fixturesList.fixturesList_parser.fixturesList_parser;
 import com.example.akat2.myfootball.listCompetitions.listCompetitions;
 import com.example.akat2.myfootball.settings.settings;
+import com.example.akat2.myfootball.utils.utils;
 import com.github.badoualy.datepicker.DatePickerTimeline;
 
 import java.text.DecimalFormat;
@@ -165,7 +166,8 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
                 for(int i=0; i<fixturesListModelArrayList.size(); i++){
                     fixturesList_model fixturesModel = fixturesListModelArrayList.get(i);
                     String dateTime[] = fixturesModel.getDate().split("T");
-                    if(dateTime[0].equals(selDate)){
+                    if(dateTime[0].equals(selDate)&&!(fixturesModel.getStatus().equals("IN_PLAY")||
+                            fixturesModel.getStatus().equals("FINISHED"))){
                         fixturesList_models.add(fixturesModel);
                     }
                 }
@@ -194,16 +196,23 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
         pickerTimeline.setLastVisibleDate(Integer.parseInt(dEnd[0]),Integer.parseInt(dEnd[1])-1,Integer.parseInt(dEnd[2]));
         pickerTimeline.setSelectedDate(Integer.parseInt(dStart[0]),Integer.parseInt(dStart[1])-1,Integer.parseInt(dStart[2]));
 
+        for(int i=0;i<fixturesListModels.size();i++){
+            fixturesList_model fixturesListModel = fixturesListModels.get(i);
+            String dateTime[] = fixturesListModel.getDate().split("T");
+            fixturesListModel.setDate(utils.getDateForTimeZone(dateTime[0],dateTime[1]));
+        }
+
         fixturesListModelArrayList = fixturesListModels;
+
         ArrayList<fixturesList_model> fixturesList_models = new ArrayList<>();
         for(int i=0; i<fixturesListModels.size(); i++){
             fixturesList_model fixturesModel = fixturesListModels.get(i);
             String dateTime[] = fixturesModel.getDate().split("T");
-            if(dateTime[0].equals(dateStart)){
+            if(dateTime[0].equals(dateStart)&&!(fixturesModel.getStatus().equals("IN_PLAY")||
+                    fixturesModel.getStatus().equals("FINISHED"))){
                 fixturesList_models.add(fixturesModel);
             }
         }
-
         fixtureslv.setAdapter(new fixturesListAdapter(context,R.layout.fixtureslv_item2,fixturesList_models));
     }
 

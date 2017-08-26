@@ -40,7 +40,7 @@ public class fixturesList_parser extends AsyncTask<String, Integer, ArrayList<fi
         Boolean connected = utils.isNetworkAvailable(context);
         if (!connected) {
             Intent intent = new Intent(context, noConnection.class);
-            intent.putExtra("caller", listCompetitions.class.getName().toString());
+            intent.putExtra("caller", fixturesList.class.getName().toString());
             context.startActivity(intent);
         }else{
             try {
