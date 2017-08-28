@@ -28,6 +28,6 @@ public class SvgDecoder implements ResourceDecoder<InputStream, SVG> {
 
     @Override
     public String getId() {
-        return "SvgDecoder.com.bumptech.svgsample.app";
+            return "SvgDecoder.com.bumptech.svgsample.app";
     }
 }

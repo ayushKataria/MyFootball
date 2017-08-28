@@ -106,6 +106,7 @@ public class teamDetails extends AppCompatActivity implements teamDetails_interf
         String badgeURL = teamDetailsModel.getCrestURL();
         if(SplashScreen.loadImages) {
             if (badgeURL.substring(badgeURL.lastIndexOf('.') + 1).equals("svg")) {
+
                 GenericRequestBuilder<Uri, InputStream, SVG, PictureDrawable> requestBuilder = Glide.with(context)
                         .using(Glide.buildStreamModelLoader(Uri.class, context), InputStream.class)
                         .from(Uri.class)

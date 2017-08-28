@@ -24,7 +24,6 @@ import com.example.akat2.myfootball.listTeams.listTeams_model.listTeams_model;
 import com.example.akat2.myfootball.utils.SvgDecoder;
 import com.example.akat2.myfootball.utils.SvgDrawableTranscoder;
 import com.example.akat2.myfootball.utils.SvgSoftwareLayerSetter;
-import com.example.akat2.myfootball.utils.utils;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -89,9 +88,17 @@ public class listTeamsAdapter extends BaseAdapter {
                 requestBuilder
                         .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .load(uri)
+                        .placeholder(R.mipmap.ic_badge)
+                        .error(R.mipmap.ic_badge)
+                        .override(50,50)
                         .into(crest);
             } else if (badgeURL.substring(badgeURL.lastIndexOf('.') + 1).equals("png")) {
-                Glide.with(context).load(badgeURL).into(crest);
+                Glide.with(context)
+                        .load(badgeURL)
+                        .placeholder(R.mipmap.ic_badge)
+                        .error(R.mipmap.ic_badge)
+                        .override(50,50)
+                        .into(crest);
             }
         }
         return convertView;
