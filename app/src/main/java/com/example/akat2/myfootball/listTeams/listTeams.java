@@ -1,5 +1,6 @@
 package com.example.akat2.myfootball.listTeams;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.example.akat2.myfootball.R;
 import com.example.akat2.myfootball.fixturesList.fixturesList;
@@ -37,6 +39,7 @@ public class listTeams extends AppCompatActivity implements listTeam_interface {
     String compId;
     int y, initialY, scrollingY, scrolledY;
     boolean isVisible = true;
+    ProgressBar progressBar;
 
 
     @Override
@@ -47,6 +50,9 @@ public class listTeams extends AppCompatActivity implements listTeam_interface {
         setSupportActionBar(toolbar);
 
         init();
+
+        teamlv.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
 
         bottomNavigationView.setSelectedItemId(R.id.action_teams);
 
@@ -173,6 +179,7 @@ public class listTeams extends AppCompatActivity implements listTeam_interface {
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         compId = getIntent().getStringExtra("compId");
         l1 = this;
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     public static listTeams getInstance(){
@@ -182,12 +189,16 @@ public class listTeams extends AppCompatActivity implements listTeam_interface {
     @Override
     public void teamListRecieved(ArrayList<listTeams_model> listTeamsModels) {
 
+        teamlv.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
         listTeams_models = listTeamsModels;
         teamlv.setAdapter(new listTeamsAdapter(context, R.layout.teamlv_item, listTeamsModels));
     }
 
     @Override
     public void teamListFailed(String message) {
+        teamlv.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
         Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG).show();
     }
 }

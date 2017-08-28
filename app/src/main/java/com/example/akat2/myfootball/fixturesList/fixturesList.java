@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.akat2.myfootball.R;
@@ -41,6 +42,7 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
     ArrayList<fixturesList_model> fixturesListModelArrayList = new ArrayList<>();
     public static String dateStart, dateEnd;
     TextView noMatches;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,11 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
         setSupportActionBar(toolbar);
 
         init();
+
+        noMatches.setVisibility(View.GONE);
+        fixtureslv.setVisibility(View.GONE);
+        pickerTimeline.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
 
         bottomNavigationView.setSelectedItemId(R.id.action_fixtures);
 
@@ -196,10 +203,13 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
         pickerTimeline = (DatePickerTimeline) findViewById(R.id.datePicker);
         l1 = this;
         noMatches = (TextView) findViewById(R.id.noMatches);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     @Override
     public void fixturesListRecieved(ArrayList<fixturesList_model> fixturesListModels) {
+        progressBar.setVisibility(View.GONE);
+        pickerTimeline.setVisibility(View.VISIBLE);
         String dStart[] = dateStart.split("-");
         String dEnd[] = dateEnd.split("-");
         pickerTimeline.setFirstVisibleDate(Integer.parseInt(dStart[0]),Integer.parseInt(dStart[1])-1,Integer.parseInt(dStart[2]));
@@ -236,6 +246,7 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
 
     @Override
     public void fixturesListFailed(String messsage) {
+        progressBar.setVisibility(View.GONE);
         Snackbar.make(findViewById(android.R.id.content),messsage,Snackbar.LENGTH_LONG).show();
     }
 

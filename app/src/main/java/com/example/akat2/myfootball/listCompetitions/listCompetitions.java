@@ -1,5 +1,6 @@
 package com.example.akat2.myfootball.listCompetitions;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.example.akat2.myfootball.R;
 import com.example.akat2.myfootball.fixturesList.fixturesList;
@@ -37,6 +39,7 @@ public class listCompetitions extends AppCompatActivity implements listCompetiti
     int y, initialY, scrollingY, scrolledY;
     boolean isVisible = true;
     ArrayList<listCompetitions_model> listCompetitions_models;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,9 @@ public class listCompetitions extends AppCompatActivity implements listCompetiti
         setSupportActionBar(toolbar);
 
         init();
+
+        complv.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
 
         bottomNavigationView.setSelectedItemId(R.id.action_teams);
 
@@ -170,6 +176,7 @@ public class listCompetitions extends AppCompatActivity implements listCompetiti
         complv = (ListView) findViewById(R.id.complv);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         l1 = this;
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     public static listCompetitions getInstance(){
@@ -179,12 +186,16 @@ public class listCompetitions extends AppCompatActivity implements listCompetiti
     @Override
     public void competitionListRecieved(ArrayList<listCompetitions_model> listCompetionsModels) {
 
+        complv.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
         listCompetitions_models = listCompetionsModels;
         complv.setAdapter(new listCompetitionsAdapter(context, R.layout.complv_item, listCompetionsModels));
     }
 
     @Override
     public void competitionListFailed(String message) {
+        complv.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
         Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG).show();
     }
 
