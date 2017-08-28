@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.akat2.myfootball.R;
 import com.example.akat2.myfootball.fixturesList.fixturesList_interface.fixturesList_interface;
@@ -39,6 +40,7 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
     DatePickerTimeline pickerTimeline;
     ArrayList<fixturesList_model> fixturesListModelArrayList = new ArrayList<>();
     public static String dateStart, dateEnd;
+    TextView noMatches;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,8 +173,15 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
                         fixturesList_models.add(fixturesModel);
                     }
                 }
+                if(fixturesList_models.size()!=0){
+                    fixtureslv.setVisibility(View.VISIBLE);
+                    noMatches.setVisibility(View.GONE);
+                    fixtureslv.setAdapter(new fixturesListAdapter(context,R.layout.fixtureslv_item2,fixturesList_models));
+                }else{
+                    fixtureslv.setVisibility(View.GONE);
+                    noMatches.setVisibility(View.VISIBLE);
+                }
 
-                fixtureslv.setAdapter(new fixturesListAdapter(context,R.layout.fixtureslv_item2,fixturesList_models));
             }
         });
 
@@ -186,6 +195,7 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
         fixtureslv = (ListView) findViewById(R.id.fixtureslv);
         pickerTimeline = (DatePickerTimeline) findViewById(R.id.datePicker);
         l1 = this;
+        noMatches = (TextView) findViewById(R.id.noMatches);
     }
 
     @Override
@@ -213,7 +223,15 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
                 fixturesList_models.add(fixturesModel);
             }
         }
-        fixtureslv.setAdapter(new fixturesListAdapter(context,R.layout.fixtureslv_item2,fixturesList_models));
+        if(fixturesList_models.size()!=0){
+            fixtureslv.setVisibility(View.VISIBLE);
+            noMatches.setVisibility(View.GONE);
+            fixtureslv.setAdapter(new fixturesListAdapter(context,R.layout.fixtureslv_item2,fixturesList_models));
+        }else {
+            fixtureslv.setVisibility(View.GONE);
+            noMatches.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
