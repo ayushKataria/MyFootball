@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 
-import com.example.akat2.myfootball.listCompetitions.listCompetitions;
+import com.example.akat2.myfootball.listCompetitionsTeams.listCompetitionsTeams;
 import com.example.akat2.myfootball.listTeams.listTeams;
 import com.example.akat2.myfootball.listTeams.listTeams_model.listTeams_model;
 import com.example.akat2.myfootball.noConnection.noConnection;
@@ -43,7 +43,7 @@ public class listTeams_parser extends AsyncTask<String, Integer, ArrayList<listT
         Boolean connected = utils.isNetworkAvailable(context);
         if (!connected) {
             Intent intent = new Intent(context, noConnection.class);
-            intent.putExtra("caller", listCompetitions.class.getName().toString());
+            intent.putExtra("caller", listCompetitionsTeams.class.getName().toString());
             context.startActivity(intent);
         }else{
             try {
@@ -79,7 +79,7 @@ public class listTeams_parser extends AsyncTask<String, Integer, ArrayList<listT
             }
             catch (IOException e) {
                 Intent intent = new Intent(context, noConnection.class);
-                intent.putExtra("caller", listCompetitions.class.getName().toString());
+                intent.putExtra("caller", listCompetitionsTeams.class.getName().toString());
                 context.startActivity(intent);
             } catch (JSONException e) {
                 errorMessage = "Invalid data";

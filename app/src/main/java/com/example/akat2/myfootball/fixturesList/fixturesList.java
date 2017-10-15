@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,8 +21,10 @@ import com.example.akat2.myfootball.R;
 import com.example.akat2.myfootball.fixturesList.fixturesList_interface.fixturesList_interface;
 import com.example.akat2.myfootball.fixturesList.fixturesList_model.fixturesList_model;
 import com.example.akat2.myfootball.fixturesList.fixturesList_parser.fixturesList_parser;
-import com.example.akat2.myfootball.listCompetitions.listCompetitions;
+import com.example.akat2.myfootball.listCompetitionsDetails.listCompetitionsDetails;
+import com.example.akat2.myfootball.listCompetitionsTeams.listCompetitionsTeams;
 import com.example.akat2.myfootball.settings.settings;
+import com.example.akat2.myfootball.utils.BottomNavigationViewHelper;
 import com.example.akat2.myfootball.utils.utils;
 import com.github.badoualy.datepicker.DatePickerTimeline;
 
@@ -53,13 +54,13 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
 
         init();
 
+
         noMatches.setVisibility(View.GONE);
         fixtureslv.setVisibility(View.GONE);
         pickerTimeline.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
 
         bottomNavigationView.setSelectedItemId(R.id.action_fixtures);
-
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -70,17 +71,26 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
                         switch(item.getItemId()){
                             case R.id.action_fixtures:
                                 break;
-                            case R.id.action_teams:
-                                Intent intent = new Intent(context, listCompetitions.class);
+                            case R.id.action_competition:
+                                Intent intent = new Intent(context, listCompetitionsDetails.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 finish();
+                                overridePendingTransition(R.anim.slide_from_right, R.anim.silde_to_left);
+                                break;
+                            case R.id.action_teams:
+                                intent = new Intent(context, listCompetitionsTeams.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
+                                overridePendingTransition(R.anim.slide_from_right, R.anim.silde_to_left);
                                 break;
                             case R.id.action_about:
                                 intent = new Intent(context, settings.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 finish();
+                                overridePendingTransition(R.anim.slide_from_right, R.anim.silde_to_left);
                                 break;
                         }
                     }
@@ -90,7 +100,7 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
         });
 
         //Hiding bottom navigation drawer
-        fixtureslv.setOnTouchListener(new View.OnTouchListener() {
+        /*fixtureslv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
@@ -163,7 +173,7 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
                 return false;
             }
         });
-
+*/
         pickerTimeline.setOnDateSelectedListener(new DatePickerTimeline.OnDateSelectedListener() {
             @Override
             public void onDateSelected(int year, int month, int day, int index) {
@@ -175,8 +185,8 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
                 for(int i=0; i<fixturesListModelArrayList.size(); i++){
                     fixturesList_model fixturesModel = fixturesListModelArrayList.get(i);
                     String dateTime[] = fixturesModel.getDate().split("T");
-                    if(dateTime[0].equals(selDate)&&!(fixturesModel.getStatus().equals("IN_PLAY")||
-                            fixturesModel.getStatus().equals("FINISHED"))){
+                    if(dateTime[0].equals(selDate)/*&&!(fixturesModel.getStatus().equals("IN_PLAY")||
+                            fixturesModel.getStatus().equals("FINISHED"))*/){
                         fixturesList_models.add(fixturesModel);
                     }
                 }
@@ -199,6 +209,7 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
 
     void init(){
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         fixtureslv = (ListView) findViewById(R.id.fixtureslv);
         pickerTimeline = (DatePickerTimeline) findViewById(R.id.datePicker);
         l1 = this;
@@ -228,8 +239,8 @@ public class fixturesList extends AppCompatActivity implements fixturesList_inte
         for(int i=0; i<fixturesListModels.size(); i++){
             fixturesList_model fixturesModel = fixturesListModels.get(i);
             String dateTime[] = fixturesModel.getDate().split("T");
-            if(dateTime[0].equals(dateStart)&&!(fixturesModel.getStatus().equals("IN_PLAY")||
-                    fixturesModel.getStatus().equals("FINISHED"))){
+            if(dateTime[0].equals(dateStart)/*&&!(fixturesModel.getStatus().equals("IN_PLAY")||
+                    fixturesModel.getStatus().equals("FINISHED"))*/){
                 fixturesList_models.add(fixturesModel);
             }
         }

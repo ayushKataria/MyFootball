@@ -7,8 +7,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 
+import com.example.akat2.myfootball.R;
 import com.larvalabs.svgandroid.SVG;
 import com.larvalabs.svgandroid.SVGParser;
 import com.squareup.okhttp.MediaType;
@@ -19,6 +24,7 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
@@ -130,8 +136,52 @@ public class utils {
                 return "DFB-Pokal 2017/18";
             case 459:
                 return "Serie B 2017/18";
+            case 464:
+                return "Champions League 2017/18";
+            case 466:
+                return "Australian A-League";
         }
         return "";
+    }
+
+    public static int getCompetitionLogo(int compId){
+        switch (compId) {
+            case 444:
+                return R.mipmap.ic_campeonato_brasileiro;
+            case 445:
+                return R.drawable.ic_premier_league;
+            case 446:
+                return R.drawable.ic_efl_championship;
+            case 447:
+                return R.drawable.ic_efl_league_one;
+            case 448:
+                return R.mipmap.ic_league_2_logo;
+            case 449:
+                return R.drawable.ic_eredivisie_nieuw_logo_2017_;
+            case 450:
+                return R.mipmap.ic_ligue_1_logo;
+            case 451:
+                return R.drawable.ic_logo_ligue_2;
+            case 452:
+                return R.drawable.ic_bundesliga_logo;
+            case 453:
+                return R.drawable.ic_2_bundesliga_logo;
+            case 455:
+                return R.mipmap.ic_primera_division;
+            case 456:
+                return R.mipmap.ic_seria_a_logo;
+            case 457:
+                return R.mipmap.ic_liga_nos;
+            case 458:
+                return R.mipmap.ic_dfb_pokal;
+            case 459:
+                return R.drawable.ic_lega_serie_b_logo;
+            case 464:
+                return R.drawable.ic_uefa_champions_league_logo_2;
+            case 466:
+                return R.mipmap.ic_a_league;
+        }
+        return -1;
     }
 
     public static OkHttpClient getOkHttpClient(){
@@ -190,22 +240,6 @@ public class utils {
         } catch (Exception ex) {
             return false;
         }
-        /*boolean haveConnectedWifi = false;
-        boolean haveConnectedMobile = false;
-
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE);
-        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
-        for (NetworkInfo ni : netInfo) {
-            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
-                if (ni.isConnected())
-                    haveConnectedWifi = true;
-            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
-                if (ni.isConnected())
-                    haveConnectedMobile = true;
-        }
-        return haveConnectedWifi || haveConnectedMobile;*/
-
     }
-
 
 }

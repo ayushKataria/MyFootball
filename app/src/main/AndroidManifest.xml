@@ -7,14 +7,14 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_soccer_ball"
+        android:icon="@drawable/ic_soccer"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_soccer_ball"
+        android:roundIcon="@drawable/ic_soccer"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".listCompetitions.listCompetitions"
-            android:label="@string/app_name"
+            android:name=".listCompetitionsTeams.listCompetitionsTeams"
+            android:label="@string/title_activity_list_competition_details"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".noConnection.noConnection"
@@ -31,7 +31,7 @@
         <activity
             android:name=".fixturesList.fixturesList"
             android:label="@string/title_activity_fixtures_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SplashScreen.SplashScreen"
             android:label="@string/title_activity_splash_screen"
@@ -45,7 +45,17 @@
         <activity
             android:name=".settings.settings"
             android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".competitionDetails.CompetitionDetails"
+            android:label="@string/title_activity_competition_details"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".listCompetitionsDetails.listCompetitionsDetails"
+            android:label="@string/title_activity_list_competition_details"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

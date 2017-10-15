@@ -13,6 +13,15 @@ public class fixtures_model {
     String awayTeamName, awayTeamURL;
     String homeTeamGoals, awayTeamGoals;
     String odds;
+    String competitionURL;
+
+    public String getCompetitionURL() {
+        return competitionURL;
+    }
+
+    public void setCompetitionURL(String competitionURL) {
+        this.competitionURL = competitionURL;
+    }
 
     public String getDate() {
         return date;

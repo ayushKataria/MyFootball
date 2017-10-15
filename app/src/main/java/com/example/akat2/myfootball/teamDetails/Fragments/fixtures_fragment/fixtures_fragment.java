@@ -33,12 +33,12 @@ public class fixtures_fragment extends Fragment implements fixtures_interface {
     RecyclerView rv;
     LinearLayoutManager linearLayoutManager;
     Context context;
-    static fixtures_fragment l1;
+    static fixtures_fragment instance;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context= getActivity().getApplicationContext();
-        l1 = this;
+        instance = this;
         View view;
         view = inflater.inflate(R.layout.fixtures_fragment, container, false);
         rv=(RecyclerView) view.findViewById(R.id.fixtureslv);
@@ -70,6 +70,6 @@ public class fixtures_fragment extends Fragment implements fixtures_interface {
     }
 
     public static fixtures_fragment getInstance(){
-        return l1;
+        return instance;
     }
 }

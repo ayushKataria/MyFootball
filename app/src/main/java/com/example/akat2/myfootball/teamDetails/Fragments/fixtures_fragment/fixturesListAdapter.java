@@ -36,7 +36,7 @@ public class fixturesListAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        fixtures_model fixturesModel = fixturesModels.get(position);
+        fixtures_model fixturesModel = fixturesModels.get(holder.getAdapterPosition());
         holder.bindFixtures(fixturesModel);
     }
 

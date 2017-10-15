@@ -10,100 +10,110 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="3dp"
+        android:layout_marginBottom="8dp"
         card_view:cardElevation="3dp">
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="4dp"
-        >
+        android:layout_margin="8dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical">
-
-           <!-- <ImageView
-                android:id="@+id/homeCrest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_badge" />-->
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/homeName"
+                android:textSize="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HomeTeam"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/homeScore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Chelsea"
-                android:textColor="@color/black" />
+                android:text="1"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:gravity="end"/>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_gravity="center">
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/score"
+                android:id="@+id/awayName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="AwayTeam"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/awayScore"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="1 : 0"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18dp"
                 android:textColor="@color/black"
-                android:textSize="25dp"
-                />
+                android:gravity="end"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+            android:layout_marginRight="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="2dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/compName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:text="Premier League 2017/18"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/time"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="1 : 0"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:visibility="gone"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="18:00"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/status"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Live"
+                android:layout_weight="1"
                 android:textColor="@color/black"
-                android:gravity="center"
-                android:layout_marginTop="4dp"
-                android:layout_gravity="center"/>
+                android:gravity="end"
+                android:layout_gravity="end"/>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical">
-
-            <!--<ImageView
-                android:id="@+id/awayCrest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_badge" />-->
-
-            <TextView
-                android:id="@+id/awayName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Arsenal"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
 
     </LinearLayout>
+
+
 </android.support.v7.widget.CardView>

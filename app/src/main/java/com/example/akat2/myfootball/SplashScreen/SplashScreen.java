@@ -21,7 +21,7 @@ public class SplashScreen extends AppCompatActivity {
 
     Context context = this;
     static public Boolean loadImages  = true;
-    SharedPreferences sharedPreferences;
+    public static SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,6 @@ public class SplashScreen extends AppCompatActivity {
                     finish();
                 }
             }
-        }, 3000);
+        }, 2000);
     }
 }

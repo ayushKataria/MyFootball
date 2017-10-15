@@ -12,7 +12,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/ic_soccer_ball"
+        android:src="@drawable/ic_soccer"
         android:layout_margin="120dp"/>
 
 

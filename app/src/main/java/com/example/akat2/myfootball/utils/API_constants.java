@@ -12,4 +12,5 @@ public class API_constants {
     public static String API_team_list = "/teams";
     public static String API_League_Table = "/leagueTable";
     public static String API_fixtures = "v1/fixtures/";
+    public static String API_COMPETITION_FIXTURES = "/fixtures";
 }

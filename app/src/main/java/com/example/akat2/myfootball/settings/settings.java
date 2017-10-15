@@ -4,29 +4,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import com.example.akat2.myfootball.R;
 import com.example.akat2.myfootball.SplashScreen.SplashScreen;
 import com.example.akat2.myfootball.fixturesList.fixturesList;
-import com.example.akat2.myfootball.listCompetitions.listCompetitions;
+import com.example.akat2.myfootball.listCompetitionsTeams.listCompetitionsTeams;
+import com.example.akat2.myfootball.utils.BottomNavigationViewHelper;
 
 public class settings extends AppCompatActivity {
 
     Context context = this;
     Switch aSwitch;
     BottomNavigationView bottomNavigationView;
-    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -39,16 +35,20 @@ public class settings extends AppCompatActivity {
         init();
 
         bottomNavigationView.setSelectedItemId(R.id.action_about);
+        aSwitch.setChecked(!SplashScreen.loadImages);
+
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                if(b){
+                SharedPreferences.Editor editor = SplashScreen.sharedPreferences.edit();
+                if(SplashScreen.loadImages){
                     SplashScreen.loadImages = false;
                 }else{
                     SplashScreen.loadImages = true;
                 }
                 editor.putBoolean("loadImages",SplashScreen.loadImages);
+                editor.commit();
+
             }
         });
 
@@ -64,12 +64,14 @@ public class settings extends AppCompatActivity {
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 finish();
+                                overridePendingTransition(R.anim.slide_from_right, R.anim.silde_to_left);
                                 break;
                             case R.id.action_teams:
-                                intent = new Intent(context, listCompetitions.class);
+                                intent = new Intent(context, listCompetitionsTeams.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 finish();
+                                overridePendingTransition(R.anim.slide_from_right, R.anim.silde_to_left);
                                 break;
                             case R.id.action_about:
                                 break;
@@ -85,7 +87,7 @@ public class settings extends AppCompatActivity {
     void init(){
         aSwitch = (Switch) findViewById(R.id.loadImages);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
     }
 
 }

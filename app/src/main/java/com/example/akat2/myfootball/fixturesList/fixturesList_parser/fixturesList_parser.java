@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 
 import com.example.akat2.myfootball.fixturesList.fixturesList;
 import com.example.akat2.myfootball.fixturesList.fixturesList_model.fixturesList_model;
-import com.example.akat2.myfootball.listCompetitions.listCompetitions;
+import com.example.akat2.myfootball.listCompetitionsTeams.listCompetitionsTeams;
 import com.example.akat2.myfootball.noConnection.noConnection;
 import com.example.akat2.myfootball.utils.API_constants;
 import com.example.akat2.myfootball.utils.utils;
@@ -81,7 +81,7 @@ public class fixturesList_parser extends AsyncTask<String, Integer, ArrayList<fi
             }
             catch (IOException e) {
                 Intent intent = new Intent(context, noConnection.class);
-                intent.putExtra("caller", listCompetitions.class.getName().toString());
+                intent.putExtra("caller", listCompetitionsTeams.class.getName().toString());
                 context.startActivity(intent);
             } catch (JSONException e) {
                 errorMessage = "Invalid data";

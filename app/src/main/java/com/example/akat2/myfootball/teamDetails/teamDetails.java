@@ -51,6 +51,7 @@ public class teamDetails extends AppCompatActivity implements teamDetails_interf
         setContentView(R.layout.activity_team_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getIntent().getStringExtra("teamName"));
 
         init();
 

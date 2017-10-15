@@ -26,6 +26,7 @@ import com.example.akat2.myfootball.listTeams.listTeams_model.listTeams_model;
 import com.example.akat2.myfootball.listTeams.listTeams_parser.listTeams_parser;
 import com.example.akat2.myfootball.settings.settings;
 import com.example.akat2.myfootball.teamDetails.teamDetails;
+import com.example.akat2.myfootball.utils.BottomNavigationViewHelper;
 
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ public class listTeams extends AppCompatActivity implements listTeam_interface {
     ListView teamlv;
     BottomNavigationView bottomNavigationView;
     ArrayList<listTeams_model> listTeams_models = new ArrayList<>();
-    static listTeams l1;
+    static listTeams instance;
     String compId;
     int y, initialY, scrollingY, scrolledY;
     boolean isVisible = true;
@@ -62,6 +63,7 @@ public class listTeams extends AppCompatActivity implements listTeam_interface {
                 Intent intent = new Intent(context, teamDetails.class);
                 intent.putExtra("selfURL", listTeams_models.get(i).getSelfURL());
                 intent.putExtra("compId", compId);
+                intent.putExtra("teamName",listTeams_models.get(i).getName());
                 startActivity(intent);
             }
         });
@@ -78,6 +80,7 @@ public class listTeams extends AppCompatActivity implements listTeam_interface {
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 finish();
+                                overridePendingTransition(R.anim.slide_from_right, R.anim.silde_to_left);
                                 break;
                             case R.id.action_teams:
                                 break;
@@ -86,6 +89,7 @@ public class listTeams extends AppCompatActivity implements listTeam_interface {
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 finish();
+                                overridePendingTransition(R.anim.slide_from_right, R.anim.silde_to_left);
                                 break;
                         }
                     }
@@ -95,7 +99,7 @@ public class listTeams extends AppCompatActivity implements listTeam_interface {
         });
 
         //Hiding bottom navigation drawer
-        teamlv.setOnTouchListener(new View.OnTouchListener() {
+        /*teamlv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
@@ -167,7 +171,7 @@ public class listTeams extends AppCompatActivity implements listTeam_interface {
                 }
                 return false;
             }
-        });
+        });*/
 
         listTeams_parser listTeamsParser = new listTeams_parser(context, compId);
         listTeamsParser.execute();
@@ -177,13 +181,14 @@ public class listTeams extends AppCompatActivity implements listTeam_interface {
     void init(){
         teamlv = (ListView) findViewById(R.id.teamlv);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         compId = getIntent().getStringExtra("compId");
-        l1 = this;
+        instance = this;
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     public static listTeams getInstance(){
-        return l1;
+        return instance;
     }
 
     @Override

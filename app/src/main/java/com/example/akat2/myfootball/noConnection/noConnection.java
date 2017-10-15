@@ -10,6 +10,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -29,7 +31,7 @@ public class noConnection extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayOptions(getSupportActionBar().getDisplayOptions() | ActionBar.DISPLAY_SHOW_CUSTOM);
+        /*getSupportActionBar().setDisplayOptions(getSupportActionBar().getDisplayOptions() | ActionBar.DISPLAY_SHOW_CUSTOM);
         ImageView imageView = new ImageView(getSupportActionBar().getThemedContext());
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.mipmap.ic_refresh);
@@ -46,7 +48,7 @@ public class noConnection extends AppCompatActivity {
                 swipeRefreshLayout.setRefreshing(true);
                 doUpdate();
             }
-        });
+        });*/
 
 
         init();
@@ -79,6 +81,30 @@ public class noConnection extends AppCompatActivity {
             }
         }
         swipeRefreshLayout.setRefreshing(false);
+    }
+
+     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_refresh, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_refresh) {
+            swipeRefreshLayout.setRefreshing(true);
+            doUpdate();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

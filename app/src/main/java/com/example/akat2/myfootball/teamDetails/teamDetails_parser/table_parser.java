@@ -3,9 +3,8 @@ package com.example.akat2.myfootball.teamDetails.teamDetails_parser;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.widget.ArrayAdapter;
 
-import com.example.akat2.myfootball.listCompetitions.listCompetitions;
+import com.example.akat2.myfootball.listCompetitionsTeams.listCompetitionsTeams;
 import com.example.akat2.myfootball.noConnection.noConnection;
 import com.example.akat2.myfootball.teamDetails.Fragments.table_fragment.table_fragment;
 import com.example.akat2.myfootball.teamDetails.teamDetails;
@@ -42,7 +41,7 @@ public class table_parser extends AsyncTask<String, Integer, ArrayList<table_mod
         Boolean connected = utils.isNetworkAvailable(context);
         if (!connected) {
             Intent intent = new Intent(context, noConnection.class);
-            intent.putExtra("caller", listCompetitions.class.getName().toString());
+            intent.putExtra("caller", listCompetitionsTeams.class.getName().toString());
             context.startActivity(intent);
         }else{
             try {
@@ -85,7 +84,7 @@ public class table_parser extends AsyncTask<String, Integer, ArrayList<table_mod
             }
             catch (IOException e) {
                 Intent intent = new Intent(context, noConnection.class);
-                intent.putExtra("caller", listCompetitions.class.getName().toString());
+                intent.putExtra("caller", listCompetitionsTeams.class.getName().toString());
                 context.startActivity(intent);
             } catch (JSONException e) {
                 errorMessage = "Invalid data";

@@ -4,12 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 
-import com.example.akat2.myfootball.listCompetitions.listCompetitions;
+import com.example.akat2.myfootball.listCompetitionsTeams.listCompetitionsTeams;
 import com.example.akat2.myfootball.noConnection.noConnection;
 import com.example.akat2.myfootball.teamDetails.Fragments.fixtures_fragment.fixtures_fragment;
 import com.example.akat2.myfootball.teamDetails.teamDetails;
 import com.example.akat2.myfootball.teamDetails.teamDetails_model.fixtures_model;
-import com.example.akat2.myfootball.utils.API_constants;
 import com.example.akat2.myfootball.utils.utils;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Response;
@@ -41,7 +40,7 @@ public class fixtures_parser extends AsyncTask<String, Integer, ArrayList<fixtur
         Boolean connected = utils.isNetworkAvailable(context);
         if (!connected) {
             Intent intent = new Intent(context, noConnection.class);
-            intent.putExtra("caller", listCompetitions.class.getName().toString());
+            intent.putExtra("caller", listCompetitionsTeams.class.getName().toString());
             context.startActivity(intent);
         }else{
             try {
@@ -67,7 +66,7 @@ public class fixtures_parser extends AsyncTask<String, Integer, ArrayList<fixtur
                         fixturesModel.setAwayTeamGoals(fixturesObject.getJSONObject("result").getString("goalsAwayTeam"));
                         fixturesModel.setHomeTeamURL(fixturesObject.getJSONObject("_links").getJSONObject("homeTeam").getString("href"));
                         fixturesModel.setAwayTeamURL(fixturesObject.getJSONObject("_links").getJSONObject("homeTeam").getString("href"));
-
+                        fixturesModel.setCompetitionURL(fixturesObject.getJSONObject("_links").getJSONObject("competition").getString("href"));
                         fixturesModels.add(fixturesModel);
                     }
                 } else {
@@ -79,7 +78,7 @@ public class fixtures_parser extends AsyncTask<String, Integer, ArrayList<fixtur
             }
             catch (IOException e) {
                 Intent intent = new Intent(context, noConnection.class);
-                intent.putExtra("caller", listCompetitions.class.getName().toString());
+                intent.putExtra("caller", listCompetitionsTeams.class.getName().toString());
                 context.startActivity(intent);
             } catch (JSONException e) {
                 errorMessage = "Invalid data";
